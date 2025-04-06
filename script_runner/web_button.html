@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Run Python Script</title>
+</head>
+<body>
+    <button id="runScript">Run My Python Script</button>
+
+    <div id="result">Results will appear here...</div>
+
+    <script>
+        document.getElementById('runScript').addEventListener('click', function() {
+            fetch('/run-script', {
+                method: 'POST'
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').textContent = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').textContent = 'Error running script';
+            });
+        });
+    </script>
+</body>
+</html>
